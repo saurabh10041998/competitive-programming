@@ -17,6 +17,7 @@ template<typename Head, typename... Tail> void dbg_out(Head H, Tail... T) { cerr
 #define ld long double
 #define sza(x) ((int)x.size())
 #define all(a) (a).begin(), (a).end()
+#define endl "\n"
 
 const int MAX_N = 1e5 + 5;
 const ll MOD = 1e9 + 7;
@@ -24,9 +25,17 @@ const ll INF = 1e9;
 const ld EPS = 1e-9;
 
 
-
 void solve() {
+
 }
 
 int main() {
+    double start = clock();
+    int tc = 1;
+    cin >> tc;
+    while(tc--) {
+       solve();
+    }
+    cerr << "[*] Time: " << (clock() * 1.0 - start) / CLOCKS_PER_SEC << std::setprecision(3) << " s" << endl;
+    return 0;
 }
