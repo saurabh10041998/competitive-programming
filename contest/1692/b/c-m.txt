@@ -1,0 +1,53 @@
+approach
+======
+
+sort the element and then start crossing out 
+
+
+1  1  1   3  3  3 7 7  7 
+
+
+1  1 1 3   3 3 7  7 7 
+
+
+1 1  3  3  7 7  4
+1 3 7 7 4
+ 
+lets take small case
+ 1  1 2  2 
+
+
+ 1, 2 is the ans
+
+ let's just prepare freq
+
+
+ 1  : 3     1 , 1
+ 3  : 3     3, 3
+7   : 3
+if freq[i] is odd we come to ground state with freq[i] = 1
+and if freq[i] is even we come to ground state with freq[i] = 2
+
+1   2 3 3  4
+
+
+count the freq with 2 --> x 
+x can be even/odd --> even --> mp.size();
+x is odd x-1 even --> mp.size() - 1;
+
+
+
+all distinct will left with these freq
+
+1 , 1 , 1 , 1 , 1,       0
+
+x : 4 => 2
+
+x: 3 ==> 1
+
+1 , 1 ==> 1, 1 -> 0
+
+1, ,  , , , 3
+
+1 
+
