@@ -2,7 +2,6 @@
 
 using namespace std;
 
-
 template<typename A, typename B> ostream& operator<<(ostream &os, const pair<A, B> &p) { return os << '(' << p.first << ", " << p.second << ')'; }
 template<typename T_container, typename T = typename enable_if<!is_same<T_container, string>::value, typename T_container::value_type>::type> ostream& operator<<(ostream &os, const T_container &v) { os << '{'; string sep; for (const T &x : v) os << sep << x, sep = ", "; return os << '}'; }
 void dbg_out() { cerr << endl; }
@@ -27,37 +26,43 @@ const ld EPS = 1e-9;
 
 
 void solve() {
-    ll n;
+    ll n; 
     cin >> n; 
     vector<ll>arr(n);
+    vector<ll>brr(n);
     for(ll i = 0; i < n; ++i)
         cin >> arr[i];
-    vector<ll>brr(n);
     for(ll j = 0; j < n; ++j)
         cin >> brr[j];
+    ll j = n - 1; 
+    vector<ll>dmin(n, 0);
+    vector<ll>dmax(n, 0);
+    vector<ll>list;
+    for(ll i = n - 1; i >= 0; --i) {
+        while(j >= 0 && brr[j] >= arr[i]) {
+            list.push_back(brr[j]);
+            --j;
+        }
+        ll minn = list.back();
+        ll maxx = list[0];
+        dmin[i] = minn - arr[i];
+        dmax[i] = maxx - arr[i]; 
+        
+        if(j + 1  == i) {
+            list.clear();
+        }
+        
+    }
 
-    auto ptr = std::upper_bound(all(arr), brr[0]);
-    ptr--;
-    int idx = ptr - arr.begin();
-    dbg(idx);
-    vector<int>min,max;
-    for(int i = 0; i <= idx; ++i) {
-        min.push_back(brr[0] - arr[i]);
-        max.push_back(brr[idx] - arr[i]);
-    }
-    dbg(min);
-    dbg(max);
-    for(int i = idx + 1; i < n; ++i) {
-        min.push_back(brr[i] - arr[i]);
-        max.push_back(brr[i] - arr[i]);
-    }
-    for(auto y: min)
-        cout << y << " ";
+
+    for(auto x: dmin)
+        cout << x << " ";
     cout << endl;
-    for(auto y: max)
-        cout << y << " ";
+    for(auto x: dmax)
+        cout << x << " ";
     cout << endl;
-}   
+    
+}    
 
 int main() {
     double start = clock();
