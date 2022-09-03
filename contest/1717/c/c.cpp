@@ -27,10 +27,23 @@ const ld EPS = 1e-9;
 
 void solve() {
     ll n; 
-    cin >> n;
-    ll ans = n + 2 * (n / 2) + 2 * (n / 3);
+    cin >> n; 
+    vector<ll>arr(n);
+    vector<ll>brr(n);
+    for(ll i = 0; i < n; ++i)
+        cin >> arr[i];
 
-    cout << ans << endl;
+    for(ll i = 0; i < n; ++i)
+        cin >> brr[i];
+    
+    bool ok = true;
+    for(ll i = 0; i < n; ++i) {
+        if((arr[i] > brr[i]) || ((arr[i] != brr[i]) && brr[(i + 1) % n ] + 1 < brr[i])) {
+            ok = false;
+            break;
+        }
+    }
+    cout << (ok ? "YES": "NO") << endl;
 }    
 
 int main() {
