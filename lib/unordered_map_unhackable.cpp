@@ -7,6 +7,10 @@ using namespace std;
 
 const int N = 2e5;
 
+/*
+ *  Quick POC to show this contest 1702 problem C, train and queries 
+ */
+
 struct custom_hash {
     static uint64_t splitmix64(uint64_t x) {
         x += 0x9e3779b97f4a7c15;
