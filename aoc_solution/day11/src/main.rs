@@ -1,8 +1,8 @@
 use std::collections::HashSet;
 
-use lazy_static::lazy_static;
 use fancy_regex::Regex;
 use itertools::Itertools;
+use lazy_static::lazy_static;
 
 #[derive(Debug)]
 pub struct Password {
@@ -35,17 +35,18 @@ impl Password {
         }
         // should  contains atleast 2 non-overlapping pairs
         lazy_static! {
-            static ref RE:Regex = Regex::new(r"(.)\1").unwrap();
+            static ref RE: Regex = Regex::new(r"(.)\1").unwrap();
         }
-        let m = RE.find_iter(&self.pass)
-                                                    .map(|m| m.unwrap().as_str())
-                                                    .collect::<HashSet<&str>>();
+        let m = RE
+            .find_iter(&self.pass)
+            .map(|m| m.unwrap().as_str())
+            .collect::<HashSet<&str>>();
         if m.len() < 2 {
             return false;
         }
         // should have three cronological letter
         for (a, b, c) in self.pass.chars().tuple_windows() {
-            if a as u8 ==  b as u8 - 1 && a as u8 == c as u8 - 2 {
+            if a as u8 == b as u8 - 1 && a as u8 == c as u8 - 2 {
                 return true;
             }
         }
